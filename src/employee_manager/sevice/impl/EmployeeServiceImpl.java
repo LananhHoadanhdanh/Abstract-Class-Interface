@@ -16,8 +16,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void editById(int id) {
-
+    public void editById(int id, Employee employee) {
+        employeeList[findIndexById(id)] = employee;
     }
 
     @Override
@@ -53,5 +53,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeService.add(employee3);
         employeeService.print();
         System.out.println("Index = " + employeeService.findIndexById(2));
+
+        Employee employee4 = new Employee(4, "Hà", 40, 120000000);
+        employeeService.editById(3, employee4);
+
+        employeeService.print();
     }
 }
