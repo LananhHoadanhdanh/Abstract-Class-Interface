@@ -22,7 +22,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteById(int id) {
-
+        Employee[] newEmployeeList = new Employee[employeeList.length - 1];
+        if (findIndexById(id) != -1) {
+            for (int i = 0; i < newEmployeeList.length; i++) {
+                if (i < findIndexById(id)) {
+                    newEmployeeList[i] = employeeList[i];
+                } else {
+                    newEmployeeList[i] = employeeList[i + 1];
+                }
+            }
+            System.out.println("New list employee: ");
+            for (int i = 0; i < newEmployeeList.length; i++) {
+                System.out.println(newEmployeeList[i]);
+            }
+            System.out.println("--------------------------");
+        } else {
+            System.out.println("Không có giá trị đó trong mảng");
+        }
     }
 
     @Override
@@ -58,5 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeService.editById(3, employee4);
 
         employeeService.print();
+
+        employeeService.deleteById(4);
     }
 }
